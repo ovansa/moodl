@@ -67,7 +67,11 @@ export default function Calendar({
   const daysToDisplay = firstDayOfMonth + daysInMonth;
   const numRows = Math.floor(daysToDisplay / 7) + (daysToDisplay % 7 ? 1 : 0);
 
-  function handleIncrementMonth(val) {
+  interface HandleIncrementMonthProps {
+    val: number;
+  }
+
+  function handleIncrementMonth({ val }: HandleIncrementMonthProps): void {
     if (numericMonth + val < 0) {
       // set month value = 11 and decrement the year
       setSelectedYear((curr) => curr - 1);
