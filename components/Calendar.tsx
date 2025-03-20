@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { baseRating, demoData, gradients } from '@/utils';
+import { baseRating, gradients } from '@/utils';
 
 import { Fugaz_One } from 'next/font/google';
 
@@ -20,7 +20,6 @@ const months = {
   December: 'Dec',
 };
 const monthsArr = Object.keys(months);
-const now = new Date();
 const dayList = [
   'Sunday',
   'Monday',
@@ -36,10 +35,11 @@ const fugaz = Fugaz_One({ subsets: ['latin'], weight: ['400'] });
 export default function Calendar({
   demo,
   completeData,
-  handleSetMood,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  handleSetMood: _handleSetMood,
 }: Readonly<{
   demo?: boolean;
-  completeData?: any;
+  completeData?: Record<number, Record<number, number>>;
   handleSetMood?: (mood: string) => void;
 }>) {
   const now = new Date();
@@ -51,9 +51,6 @@ export default function Calendar({
 
   const numericMonth = monthsArr.indexOf(selectedMonth);
   const data = completeData?.[selectedYear]?.[numericMonth] || {};
-
-  // console.log(`completeData`, data);
-  // console.log(`data`, data);
 
   const monthNow = new Date(
     selectedYear,

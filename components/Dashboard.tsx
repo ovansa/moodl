@@ -16,23 +16,23 @@ export default function Dashboard() {
   const { currentUser, userDataObject, setUserDataObject, loading } = useAuth();
   const [data, setData] = useState({});
 
-  function countValues() {
-    let total_number_of_days = 0;
-    let sum_moods = 0;
-    for (const year in data) {
-      for (const month in data[year]) {
-        for (const day in data[year][month]) {
-          const days_mood = data[year][month][day];
-          total_number_of_days++;
-          sum_moods += days_mood;
-        }
-      }
-    }
-    return {
-      num_days: total_number_of_days,
-      average_mood: sum_moods / total_number_of_days,
-    };
-  }
+  // function countValues() {
+  //   let total_number_of_days = 0;
+  //   let sum_moods = 0;
+  //   for (const year in data) {
+  //     for (const month in data[year]) {
+  //       for (const day in data[year][month]) {
+  //         const days_mood = data[year][month][day];
+  //         total_number_of_days++;
+  //         sum_moods += days_mood;
+  //       }
+  //     }
+  //   }
+  //   return {
+  //     num_days: total_number_of_days,
+  //     average_mood: sum_moods / total_number_of_days,
+  //   };
+  // }
 
   async function handleSetMood(mood: string) {
     const now = new Date();
@@ -56,7 +56,7 @@ export default function Dashboard() {
       setUserDataObject(newData);
 
       const docRef = doc(db, 'users', currentUser!.uid);
-      const res = await setDoc(
+      await setDoc(
         docRef,
         {
           [year]: {

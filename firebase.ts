@@ -6,13 +6,14 @@ import { initializeApp } from 'firebase/app';
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyBETIDQYJDD1fD6kUKiBn4yet1lfj1z8_I',
-  authDomain: 'moodl-204a1.firebaseapp.com',
-  projectId: 'moodl-204a1',
-  storageBucket: 'moodl-204a1.firebasestorage.app',
-  messagingSenderId: '742457837661',
-  appId: '1:742457837661:web:02a3c037f2d78a5fc765b4',
+  apiKey: process.env.NEXT_PUBLIC_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_APP_ID,
 };
 
 // Initialize Firebase
