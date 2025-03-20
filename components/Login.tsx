@@ -32,7 +32,11 @@ export default function Login() {
         await login(email, password);
       }
     } catch (err) {
-      console.error(err.message);
+      if (err instanceof Error) {
+        console.error(err.message);
+      } else {
+        console.error(err);
+      }
     } finally {
       setAuthenticating(false);
     }

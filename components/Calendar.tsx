@@ -50,7 +50,11 @@ export default function Calendar({
   const [selectedYear, setSelectedYear] = useState(now.getFullYear());
 
   const numericMonth = monthsArr.indexOf(selectedMonth);
-  const data = completeData?.[selectedYear]?.[numericMonth] || {};
+  const data: Record<number, number> = (
+    typeof completeData?.[selectedYear]?.[numericMonth] === 'object'
+      ? completeData[selectedYear][numericMonth]
+      : {}
+  ) as Record<number, number>;
 
   const monthNow = new Date(
     selectedYear,
@@ -90,7 +94,7 @@ export default function Calendar({
       <div className='grid grid-cols-5 gap-4'>
         <button
           onClick={() => {
-            handleIncrementMonth(-1);
+            handleIncrementMonth({ val: -1 });
           }}
           className='mr-auto text-indigo-400 text-lg sm:text-xl duration-200 hover:opacity-60'
         >
@@ -106,7 +110,7 @@ export default function Calendar({
         </p>
         <button
           onClick={() => {
-            handleIncrementMonth(+1);
+            handleIncrementMonth({ val: +1 });
           }}
           className='ml-auto text-indigo-400 text-lg sm:text-xl duration-200 hover:opacity-60'
         >

@@ -68,7 +68,10 @@ export default function Dashboard() {
         { merge: true }
       );
     } catch (error) {
-      console.log('Error setting mood:', error.message);
+      console.log(
+        'Error setting mood:',
+        error instanceof Error ? error.message : 'Unknown error'
+      );
     }
   }
 
